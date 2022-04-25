@@ -1,0 +1,74 @@
+COGS 118A- Project Proposal
+Peer Review
+You will all have an opportunity to look at the Project Proposals of other groups to fuel your creativity and get more ideas for how you can improve your own projects.
+
+Both the project proposal and project checkpoint will have peer review.
+
+Names
+Merel van den Bos
+Alex Rivera
+Albert Aung
+Lillian Wood
+Abstract
+This project will focus on the online gaming storefront Steam and its review system. Our goal with the dataset is to create a model using sentiment analysis that can automatically detect whether a user's review of a game is positive or negative based on language alone. We will be using a Support Vector Machine (SVM) in order to categorize incoming reviews into positive or negative. This will allow the review system to be more automatic and better show what the general consensus is about a particular game.
+
+Steam is a highly-used online marketplace for P.C. videogames. On their website Steam claims to be "the ultimate destination for playing, discussing, and creating games" [3]. According to Statista, there are approximately 120 million people that are active montly on Steam in the year 2020 which demonstrates its wide reach [2]. The popularity of the platform has developed into a social feature by housing the P.C. gaming community and connecting friends through muutually-played games. An important feature of Steam, both as a marketplace and a social sphere, is the ability to write, read, and rate reviews for games.
+
+The plethora of review on Steam provides both an interesting and abundant source of text with potential to drive useful sentiment analysis models. In their paper, "Steam Review Dataset - new, large scale sentiment dataset," Sobkowicz and Stokowiec introduce a dataset which they claim could be a powerful source of consumer data for sentiment analysis [1]. Utlizing these reviews has relevant and important implications. Since these reviews act as consumer data, conclusions drawn from these reviews inform both gamers and game developers about successful and worthwile games. Additionally, the function of reviewing is a very powerful feature, providing gamers with a voice that directly impacts which games sell and which games flop [1]. It would be highly valuable for both development of future games and for satisfaction of gamers to tailor the review system to be effective and informative.
+
+As it stands, reviews consist of both written commentary and a "Yes" (thumbs-up) or "No" (thumbs-down). The Yes and No ratings for each game are averaged to create two summative ratings which appear underneath the synopsis of the game when a user views the game's page. "Recent Reviews" averages the number of positive and negative recent reviews. "All" averages the number of all positive and negative reviews. The summative ratings are labeled on a scale of: overwhelmingly negative, very negative, negative, mostly negative, mixed, mostly positive, positive, very positive, overwhelmingly positive.
+
+Although this feedback is already incredibly helpful to gamers and game developers, it is questionable whether the data is entirely accurate. As they stand, the summative ratings are binary, only based on "Yes" or "No." There is no way to account for partially liking or disliking a game. Forcing users to choose between Yes or No may skew the ratings incorrectly, since there is no middle ground. Therefore, it would be useful to also summatively analyze the written data in order to develop a a more well-rounded summary of a game's reviews.
+
+We propose the most meaningful way to analyze and summarize a game's written reviews would be to perform a sentiment analysis to predict the rating of a game based on the written reviews.
+
+Problem Statement
+
+Problem: Optimizing the prediction of game ratings based on user reviews
+
+Solution: Sentiment Analysis
+
+Metrics of Measurment: Accuracy (percentage of correct game rating predictions) Precision (percentage of correct game rating predictions over correct game rating predictions and false correct game rating predictions) Recall (percentage of correct game rating predictions over correct game rating predicitions and false incorrect game rating predictions)
+
+Replicability: Choosing a large dataset of 6.4 million observations made and making it available for everyone to access
+Looking to avoid overfitting
+Using easily-accessable libraries for creating different models which are shared online
+
+Data
+Dataset: https://www.kaggle.com/datasets/andrewmvd/steam-reviews
+Description: The dataset contains over 6.4 million observations, which are publicly available reviews in English from the Steam Reviews portion of Steam store run by Valve. 5 variables describe each observation: Game id, Game Name, Review text, Review Sentiment: whether the game the review recommends the game or not, and Review vote: whether the review was recommended by another user or not.
+Some critical variables are the Review text, Review sentiment, and Review vote. Review text will be string data. Review sentiment is coded -1 as negative and 1 as positive review. Review vote is coded 0 as not recommended and 1 as recommended.
+Review sentiment and Review vote are already in numerical values, which alleviates cleaning.
+Proposed Solution
+The solution to the problem we're trying to solve is sentiment analysis since it deals with evaluating user ratings on Steam since sentiment analysis looks into studying texts and analyzing them to classify text which in our case would be binary (i.e. whether a review is positive or negative). With this information from applying sentiment analysis, we can make predictions on the ratings of each game. To do this, we will be applying different models to see which model allows us to optimize the prediction of game ratings. To do sentiment analysis, we will have to pre-process the data to reduce noise, dimensionality to improve the efficiency of the machine learning models. Some ways we look to do this by cleaning the data by switching all the words into lowercase words, removing numbers, removing stopwords and removing punctuation.
+
+One way we can perform sentiment analysis is by using a Support Vector Machine (SVM) in order to create a distinction between reviews that appear positive and reviews that appear negative. This model will then allow us to automatically categorize reviews without further user input. A Support Vector Machine will require a kernel for tuning. In this case, we will most likely choose a linear kernel, as we are trying to decide between positive and negative reviews. This can be done using the scikit-learn library.
+
+Evaluation Metrics
+Since the problem we are tackling is a classifcation problem (i.e. whether a rating is positive or negative), our evaluation metrics in relation to sentiment analysis will include the following: precision, recall, f-score and accuracy. Accuracy or more specifically classification accuracy can be determined by the formula (Accuracy = Number of Correct Predictions / Total number of predictions made). This measures the correctness of predictions as suggested by the formula. An equation that envelopes both precision and recall is the calculation of the F1 score which entails (F1 = 2 * 1/(1/Precision + 1/Recall)). The F1 Score tells us how precise (preicison) and how error-less our model is (recall). A high amount of precision and low amount of recall can lead to a significant number of missing instances and a low amount of precision but high amount of recall shows us inaccurate the data is but it does not miss a significant number of instances. The F1 score which ranges from [0,1] calculates and tries to tell us the balance between precision and recall. The prediction formula is given by (Precision = Number of True Positives / ( Number of True Positives + Number of False Positives)) and tells us the number of correct positive results over the number of positive results predicted by the model. The recall formula is given by ( Number of True Positives / Number of True Positives + Number of False Negatives) and tells us the number of correct positive results over the number of all samples that should have identified as positive.
+
+Source: https://towardsdatascience.com/metrics-to-evaluate-your-machine-learning-algorithm-f10ba6e38234
+
+Ethics & Privacy
+For our ethical review, we consulted the ‘’Data Science Ethics Checklist’’ by deon (https://deon.drivendata.org/), which contains check items for every data-related project. When people make a review on Steam, they get the option to choose whether it is public, only for their friends, or private. Nevertheless, we have chosen to use an anonymous data set for privacy reasons and avoid creating a potential bias by including personal information like gender for instance. Besides that, we also avoid the risk of unintended harm by choosing the anonymous data, where we avoid online abuse or physical harm being conducted upon the participants since their private information will be kept private in every way. Also, since some reviews are already private, this equalizes all the reviews together and Steam has provided this data. Their own website does have a privacy policy about for their users (https://store.steampowered.com/privacy_agreement/) so people must approve that. Despite the anonymity, we will also not use the data for any other purposes than our project. We have chosen a huge dataset which hopefully minimizes our potential bias. We are very aware of potential risks like p-hacking and wrongly sampling sizing and will pay attention to those. Any very odd outliers will be investigated and taken seriously. We know the source of our data and will share the dataset in our proposal for total transparency.
+
+Team Expectations
+We communicate through Discord where we either write each other and/or make calls, whatever is necessary for the discussion we need to have. We will also try to meet on campus in person in a while and work on the project together. We all respect each others way of working and we reach a consensus in good consultation. Also, we try to take everyones preferences considering topics for instance in consideration and so far this worked us very smoothly. When someone has a hard time makgin their deadline, we communicate this early upfront and help each other out.
+
+Project Timeline Proposal
+Replace this with something meaningful that is appropriate for your needs. It doesn't have to be something that fits this format. It doesn't have to be set in stone... "no battle plan survives contact with the enemy". But you need a battle plan nonetheless, and you need to keep it updated so you understand what you are trying to accomplish, who's responsible for what, and what the expected due dates are for each item.
+
+Meeting Date	Meeting Time	Completed Before Meeting	Discuss at Meeting
+4/18	7 PM	Brainstorm topics/questions (all)	Discuss and decide topic for the project proposal; Let everyone know when you can work on it; Set deadlines
+4/24 (online chat)	10 PM	Put in the file what was discussed	Help each other out where help is needed (all); Split up the work that is left
+2/1	10 AM	Edit, finalize, and submit proposal; Search for datasets (Beckenbaur)	Discuss Wrangling and possible analytical approaches; Assign group members to lead each specific part
+2/14	6 PM	Import & Wrangle Data ,do some EDA (Maradonna)	Review/Edit wrangling/EDA; Discuss Analysis Plan
+2/23	12 PM	Finalize wrangling/EDA; Begin programming for project (Cruyff)	Discuss/edit project code; Complete project
+3/13	12 PM	Complete analysis; Draft results/conclusion/discussion (Carlos)	Discuss/edit full project
+3/19	Before 11:59 PM	NA	Turn in Final Project
+Footnotes
+1.^: Sobkowicz, Antoni & Stokowiec, Wojciech. (2016). Steam Review Dataset - new, large scale sentiment dataset. https://www.researchgate.net/publication/311677831_Steam_Review_Dataset_-_new_large_scale_sentiment_dataset
+2.^: Statista.com. (2021). Number of peak concurrent Steam users from January 2013 to September 2021. https://www.statista.com/statistics/308330/number-stream-users/
+3.^: Steam.com. (2022). https://store.steampowered.com/about/
+
+ 
