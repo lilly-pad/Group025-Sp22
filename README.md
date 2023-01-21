@@ -1,10 +1,3 @@
-# COGS118A Project template
-This is your group repo for your final project for COGS118A
+# Sentiment Analysis on Steam Reviews
 
-This repository is publicly visible! We will be using that feature to do peer review of projects.
-
-Template notebooks for each component are provided. Only work on the notebook prior to its due date. After each submission is due, move onto the next notebook (For example, after the proposal is due, start working in the Data Checkpoint notebook).
-
-This is your repo. You are free to manage the repo as you see fit, edit this README, add data files, add scripts, etc. So long as there are the four files above on due dates with the required information, the rest is up to you all.
-
-Also, you are free and encouraged to share this project after the course and to add it to your portfolio. Just be sure to fork it to your GitHub at the end of the quarter!
+This project focuses on the online gaming storefront Steam and its review system. Our goal with the dataset was to create a model using sentiment analysis that can automatically detect whether a user's review of a game is positive or negative based on language alone. We used heavy feature selection, such as bag of words and weighing certain features. Then, we ran a classification model to categorize incoming reviews into positive or negative. This allows the review system to be more automatic and better show what the general consensus is about a particular game.
